@@ -18,8 +18,6 @@ namespace ALSZOTE{
 // check if the parameters are legal
 void CheckParameters(size_t ROW_NUM, size_t COLUMN_NUM)
 {
-    // std::cout << "ROW_NUM = " << ROW_NUM << std::endl;
-    // std::cout << "COLUMN_NUM = " << COLUMN_NUM << std::endl;
     if (ROW_NUM%128 != 0 || COLUMN_NUM%128 != 0){
         std::cerr << "row or column parameters is wrong" << std::endl;
         exit(EXIT_FAILURE); 
@@ -378,7 +376,6 @@ void OnesidedSend(NetIO &io, PP &pp, std::vector<block> &vec_m, size_t EXTEND_LE
     // prepare to receive a secret shared matrix Q from receiver
     size_t ROW_NUM = EXTEND_LEN;   // set row num as the length of long ot
     size_t COLUMN_NUM = pp.BASE_LEN;  // set column num as the length of base ot
-
 
     CheckParameters(ROW_NUM, COLUMN_NUM); 
 
