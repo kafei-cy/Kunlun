@@ -192,8 +192,6 @@ void Send(NetIO &io, PP &pp, std::vector<std::vector<uint8_t>> &vec_X, size_t IT
         vec_X_padded.resize(padded_size_send, dummy_item);
     }
 
-
-
     // get the intersection X \cup Y via one-sided OT from receiver
     // ALSZOTE::OnesidedSendByteVector(io, pp.ote_part, vec_X, vec_X.size());
     ALSZOTE::OnesidedSendByteVector(io, pp.ote_part, vec_X_padded, vec_X_padded.size()); 
@@ -232,16 +230,12 @@ std::vector<std::vector<uint8_t>> Receive(NetIO &io, PP &pp, std::vector<std::ve
 
     std::cout << "[mqRPMT-based PSU] Phase 2: execute one-sided OTe >>>" << std::endl;
 
-
     //fix issue 15
     size_t original_size_recv = vec_indication_bit.size();
     // pad vector to be multiple of 128
     size_t padded_size_recv = (original_size_recv + 127) / 128 * 128;
     // we assume the padded positions are 0
     vec_indication_bit.resize(padded_size_recv, 0);
-
-
-
 
     // get the intersection X \cup Y via one-sided OT from receiver
     std::vector<std::vector<uint8_t>> vec_X_diff; 
