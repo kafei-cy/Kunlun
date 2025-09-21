@@ -324,7 +324,6 @@ namespace VOLE {
 			return (vec_leaf[0] ^ vec_leaf[1]);
 		}
 		
-		
 		uint64_t leaf_num = static_cast<uint64_t>(1ull) << depth;
 		uint64_t half_leaf_num = static_cast<uint64_t>(1ull) << (depth - 1);
 		uint64_t inner_num = leaf_num - 2;
@@ -333,10 +332,8 @@ namespace VOLE {
 		//generate vec_inner
 		std::vector<block> vec_temp; 
 		vec_temp = GGM_PRG(k);
-		
 		vec_inner[0] = vec_temp[0];
 		vec_inner[1] = vec_temp[1];
-		
 		auto parent_i = 0;
 		for(auto child_j = 2; child_j < inner_num; child_j+=2){
 			vec_temp = GGM_PRG(vec_inner[parent_i]);
@@ -390,8 +387,6 @@ namespace VOLE {
 	//(3.2)
 	std::vector<block> PuncEval(uint8_t depth, block beta, block* ptr_m, uint8_t* ptr_selection_bit){
 
-		// std::cout << "depth = " << (uint32_t)depth << std::endl;
-
 		if (depth <= 1)
 		{
 			if (depth ==  0) return {};
@@ -409,7 +404,6 @@ namespace VOLE {
 			return vec_leaf;
 		}
 		
-
 		uint64_t leaf_num = static_cast<uint64_t>(1ull) << depth;
 		uint64_t half_leaf_num = static_cast<uint64_t>(1ull) << (depth - 1);
 		Punc_Node* ptr_inner = new Punc_Node[leaf_num - 2];
