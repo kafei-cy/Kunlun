@@ -60,6 +60,15 @@ namespace VOLE {
 		std::vector<block> vec_w;
 		std::vector<block> vec_A;
 		
+		//vec_B = vec_C + vec_A*delta.
+		//w + v = u * delta
+		// return [u, w = share_(u*delta)]
+		if (N_item < 256)
+		{
+			baseVOLE_tA(A_io, N_item, vec_A, vec_C);
+			return vec_A;
+		}
+
 		// call baseVOLE to get vec_u and vec_w
 		baseVOLE_tA(A_io, t, vec_u, vec_w);
 		vec_A = tmpVOLE_A(A_io, N_item, t, vec_C, vec_u, vec_w);	
@@ -69,7 +78,14 @@ namespace VOLE {
 	
 	//(1.2) return vec_B
 	void VOLE_B(NetIO &B_io, uint64_t N_item, std::vector<block>& vec_B, block delta, uint64_t t){
-	 	std::vector<block> vec_v;		
+	 	std::vector<block> vec_v;
+		
+		if (N_item < 256)
+		{
+			baseVOLE_tB(B_io, N_item, vec_B, delta);
+			return ;
+		}
+		
 		baseVOLE_tB(B_io, t, vec_v, delta);
 		tmpVOLE_B(B_io, N_item, t, vec_v, vec_B);
 		
