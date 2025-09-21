@@ -21,10 +21,10 @@ In detail, we implement the protocol in Figure:7 without consistency check.
 
 #ifndef VOLE_HPP
 #define VOLE_HPP
-#include<cmath>
+#include <cmath>
 #include "../../crypto/setup.hpp"
-#include"basevole.hpp"
-#include"exconvcode.hpp"
+#include "basevole.hpp"
+#include "exconvcode.hpp"
 
 
 namespace VOLE {
